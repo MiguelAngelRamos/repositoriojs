@@ -47,7 +47,7 @@ const renderizado = async (resultado, info) => {
 
     setTimeout(() =>  {
       UI.divMensaje.textContent = '';
-      UI.divMensaje.classList.remove('error');
-    }, 3000);
+      UI.divMensaje.classList.remove('error')
+    })
   }
 }

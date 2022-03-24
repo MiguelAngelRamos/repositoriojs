@@ -11,7 +11,8 @@ class Api {
 
   async consultarApi() {
     // ${} template string
-    const URL = `https://api.lyrics.ovh/v1/${this.artista}/${this.cancion}`;
+    //url
+    const URL = encodeURI(`https://api.lyrics.ovh/v1/${this.artista}/${this.cancion}`);
 
     try {
       // fetch async await
