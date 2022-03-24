@@ -25,7 +25,10 @@ const getCharacterName = async (nameCharacter) => {
     throw error;
   }
 };
-
+// LIMPIAR EL ROW
+const cleanRow = () => {
+  rowCards.innerHTML = '';
+}
 // Funcion sea punto de arranque
 const init = async () => {
    // getCharacteres().then(r=>console.log(r));
@@ -56,7 +59,7 @@ cardCharacter = (character) => {
   const textButtonCharacter = document.createTextNode('Ir al personaje');
 
   // Añadir las clases css de bootstrap
-  cardBootstrap.classList.add('card', 'mt-4');
+  cardBootstrap.classList.add('card', 'mt-4', 'col-sm-12', 'col-md-3');
   imgCard.classList.add('card-img-top', 'mt-2');
   cardBody.classList.add('card-body');
   titleCharacter.classList.add('card-title', 'text-center');
@@ -80,29 +83,19 @@ const createCards = (characters) => {
   characters.map( personaje => cardCharacter(personaje));
 }
 
+// Formulario de busqueda de personaje
 
+formData.addEventListener('submit', handleSubmit);
 
+function handleSubmit(event) {
+  event.preventDefault();
+  console.log(this); // es el formulario
+  const form = new FormData(this);
 
+  // limpieza de los primeros 20 personajes
+  cleanRow();
+  // console.log(form.get('character'));
 
+  getCharacterName(form.get('character')).then( data => createCards(data.results)).catch(err => console.error(err))
 
-
-
-
-
-
-
-{/* 
-<div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Rick Sanchez</h5>
-  </div>
-  <a href="#" class="btn btn-primary">Ir al Personaje</a>
-</div>  
-*/}
-
-
-{/* <div class="card mt-4">
-
-</div>
- */}
+}
